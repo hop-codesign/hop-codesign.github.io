@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hopper Co-Design Video</title>
+<style>
+  :root { --fg:#1f1f1f; --muted:#555; --bg:#ffffff; --line:#e3e3e3; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fg:#ececec; --muted:#a8a8a8; --bg:#161616; --line:#333; } }
+  :root[data-theme="dark"] { --fg:#ececec; --muted:#a8a8a8; --bg:#161616; --line:#333; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 Georgia, "Times New Roman", serif; }
+  main { max-width:960px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-size:1.9rem; line-height:1.25; margin:0 0 6px; }
+  h2 { font-size:1.2rem; margin:36px 0 8px; border-bottom:1px solid var(--line); padding-bottom:4px; }
+  .sub { color:var(--muted); margin:0 0 24px; }
+  video, img { width:100%; height:auto; border:1px solid var(--line); border-radius:6px; }
+  p.cap { color:var(--muted); font-size:0.92rem; margin-top:6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Co-Designing towards Deployable Hopping:<br>An LLM Shapes a Hopper's Leg and Rotors</h1>
+  <p class="sub">Anonymous submission. Companion video.</p>
+
+  <h2>Video</h2>
+  <video src="video.mp4" controls playsinline preload="metadata"></video>
+  <p class="cap">0&ndash;10 s: real to sim. The real Pro-OMEGA2 (top) and the validated simulator (bottom) run the same controller on a stop-and-go command (one sensor-noise seed; the simulated robot completes this run in 3 of 6 seeds). 10&ndash;29 s: four designs under the same design-conditioned policy, one seed each (the scores J in the paper use 6 seeds): forward speed ramped to 1.2&nbsp;m/s, then hopping in place with a 1.5&nbsp;m/s sideways kick. Pro-OMEGA2 is shown with its real 0.567&nbsp;m arms.</p>
+
+  <h2>Overview</h2>
+  <img src="overview.png" alt="Overview figure: leg family, rotor family, real robot, simulator and the LLM design loop">
+
+  <h2>Abstract</h2>
+  <p>Taking a dynamic robot from the lab to the field is limited not only by its controller but by its body: sim-to-real transfer can close a dynamics gap, but cannot add control authority the hardware lacks. A single-legged hopper acts on its body only through its foot during the stance phase; propellers extend this authority into flight, but how to shape the leg and rotors together is still not well understood. As preliminary work, an LLM co-designs both in a simulator grounded in the real hopper Pro-OMEGA2, whose closed-chain three-chain revolute-spherical-revolute (3-RSR) leg is validated against its logs (7.3&nbsp;mm error); rotors follow commercial-part mass laws, and one policy hops every design. For the leg, the LLM finds that foot clearance is set by how far the leg can retract, not by push-off, and a refined protocol raises its rule accuracy from 0.60 to 0.94. For the rotors, at equal budget Claude and GPT score below Bayesian optimisation and random search (0.59 and 0.57 vs. 0.64) and level with CMA-ES (0.57), but neither proposes an unbuildable design (the baselines waste 2-4 of 24); Claude's best design, four rotors on Pro-OMEGA2's leg, is faster and steadier than Pro-OMEGA2 (0.64 vs. 0.58). These results show that the LLM can design buildable robots that improve on the original and explain its choices, with scores in the range of black-box optimisers.</p>
+</main>
+</body>
+</html>
